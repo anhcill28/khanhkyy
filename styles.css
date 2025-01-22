@@ -1,0 +1,115 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column; /* Đổi sang cột để hỗ trợ nội dung cuộn */
+    justify-content: flex-start; /* Nội dung bắt đầu từ trên */
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #FFC0CB, #FF69B4); /* Nền màu hồng */
+    color: white;
+    text-align: center;
+}
+
+.container {
+    max-width: 800px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1); /* Hiệu ứng trong suốt */
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    margin-bottom: 20px; /* Tạo khoảng trống giữa các phần */
+}
+
+h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+    animation: glow 1.5s infinite alternate; /* Hiệu ứng ánh sáng */
+}
+
+p {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+}
+
+.lixi-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 15px;
+    justify-content: center;
+}
+
+.lixi {
+    width: 100px;
+    height: 150px;
+    background: linear-gradient(135deg, #FF5E5E, #FF4500);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out, background 0.3s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+    position: relative;
+    perspective: 1000px; /* Hiệu ứng lật */
+}
+
+.lixi::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.lixi:hover::before {
+    opacity: 1;
+}
+
+.lixi:hover {
+    transform: rotateY(15deg) scale(1.1); /* Lật nhẹ khi hover */
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3), 0 0 20px #FFD700;
+}
+
+.lixi.opened {
+    background: linear-gradient(135deg, #FFD700, #FF8C00);
+    pointer-events: none;
+    transform: rotateY(360deg) scale(1.2); /* Hiệu ứng lật 360 độ */
+    transition: transform 0.5s ease-in-out;
+    box-shadow: 0 10px 30px rgba(255, 215, 0, 0.5), 0 0 30px #FFD700;
+}
+
+.reset-btn {
+    background: linear-gradient(135deg, #FFD700, #FF4500);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-top: 20px;
+    transition: background 0.3s ease-in-out, transform 0.2s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.reset-btn:hover {
+    background: linear-gradient(135deg, #FF69B4, #FF1493); /* Màu hồng nhấn */
+    transform: scale(1.1);
+    box-shadow: 0 8px 20px rgba(255, 105, 180, 0.5);
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 0 0 10px #FF1493, 0 0 20px #FF69B4, 0 0 30px #FFD700;
+    }
+    to {
+        text-shadow: 0 0 20px #FF69B4, 0 0 30px #FFD700, 0 0 40px #FF4500;
+    }
+}
